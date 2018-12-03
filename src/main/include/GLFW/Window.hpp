@@ -4,6 +4,8 @@
 #include <string>
 
 #include <GLFW/glfw3.h>
+
+#include "GLFW/KeyState.hpp"
 #include "GLFW/Monitor.hpp"
 #include "GLFW/WindowHints.hpp"
 
@@ -15,7 +17,7 @@ namespace glfw {
         Window& operator= (const Window&) = delete;
 
     public:
-        static void setHints(const WindowHints& hints);
+        static void setHints(const WindowHints& hints);        
 
         Window() noexcept:
             _window(nullptr) {}
@@ -93,6 +95,38 @@ namespace glfw {
         bool shouldClose() const noexcept;
 
         void makeContextCurrent() noexcept;
+
+        std::string getClipboardString() const noexcept;
+
+        KeyState getKey(int key) const noexcept;
+
+        void setCharCallback(GLFWcharfun cb) noexcept;
+
+        void setCharModsCallback(GLFWcharmodsfun cb) noexcept;
+
+        void setClipboardString(const std::string& str) noexcept;
+
+        void setCursorEnterCallback(GLFWcursorenterfun cb) noexcept;
+
+        void setCursorPosition(double xpos, double ypos) noexcept;
+
+        float getOpacity() const noexcept;
+
+        void requestAttention() noexcept;
+
+        void setDropCallback(GLFWdropfun cb) noexcept;
+
+        void setKeyCallback(GLFWkeyfun cb) noexcept;
+
+        void setMouseButtonCallback(GLFWmousebuttonfun cb) noexcept;
+
+        void setScrollCallback(GLFWscrollfun cb) noexcept;
+
+        void setContentScaleCallback(GLFWwindowcontentscalefun cb) noexcept;
+
+        void setMaximizedCallback(GLFWwindowmaximizefun cb) noexcept;
+
+        void setOpacity(float opacity) noexcept;
     };
 }
 

@@ -215,4 +215,48 @@ namespace glfw {
     inline void Window::makeContextCurrent() noexcept {
         glfwMakeContextCurrent(_window);
     }
+
+    inline std::string Window::getClipboardString() const noexcept {        
+        return glfwGetClipboardString(_window);
+    }
+
+    inline KeyState Window::getKey(int key) const noexcept {
+        return static_cast<KeyState> (glfwGetKey(_window, key));
+    }
+
+    inline float Window::getOpacity() const noexcept {
+        return glfwGetWindowOpacity(_window);
+    }
+
+    inline void Window::requestAttention() noexcept {
+        glfwRequestWindowAttention(_window);
+    }
+
+    inline void Window::setDropCallback(GLFWdropfun cb) noexcept {
+        glfwSetDropCallback(_window, cb);
+    }
+
+    inline void Window::setKeyCallback(GLFWkeyfun cb) noexcept {
+        glfwSetKeyCallback(_window, cb);
+    }
+
+    inline void Window::setMouseButtonCallback(GLFWmousebuttonfun cb) noexcept {
+        glfwSetMouseButtonCallback(_window, cb);
+    }
+
+    inline void Window::setScrollCallback(GLFWscrollfun cb) noexcept {
+        glfwSetScrollCallback(_window, cb);
+    }
+
+    inline void Window::setContentScaleCallback(GLFWwindowcontentscalefun cb) noexcept {
+        glfwSetWindowContentScaleCallback(_window, cb);
+    }
+
+    inline void Window::setMaximizedCallback(GLFWwindowmaximizefun cb) noexcept {
+        glfwSetWindowMaximizeCallback(_window, cb);
+    }
+
+    inline void Window::setOpacity(float opacity) noexcept {
+        glfwSetWindowOpacity(_window, opacity);
+    }
 }

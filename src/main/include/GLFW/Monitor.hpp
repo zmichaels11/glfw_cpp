@@ -38,6 +38,10 @@ namespace glfw {
         void setGammaRamp(const GLFWgammaramp& ramp) noexcept;
 
         GLFWgammaramp getGammaRamp() const noexcept;
+
+        void setUserPointer(void * ptr) noexcept;
+
+        void * getUserPointer() const noexcept;
     };
 }
 

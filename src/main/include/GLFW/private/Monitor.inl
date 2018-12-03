@@ -92,4 +92,12 @@ namespace glfw {
     inline void Monitor::setGammaRamp(const GLFWgammaramp& ramp) noexcept {
         glfwSetGammaRamp(_monitor, &ramp);
     }
+
+    inline void Monitor::setUserPointer(void * ptr) noexcept {
+        glfwSetMonitorUserPointer(_monitor, ptr);
+    }
+
+    inline void * Monitor::getUserPointer() const noexcept {
+        return glfwGetMonitorUserPointer(_monitor);
+    }
 }
