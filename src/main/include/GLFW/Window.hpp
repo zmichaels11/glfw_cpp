@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <stdexcept>
 #include <string>
 
@@ -12,15 +13,21 @@
 namespace glfw {
     class Window {
         GLFWwindow * _window;
+        bool _wrapped;
 
         Window(const Window&) = delete;
         Window& operator= (const Window&) = delete;
 
     public:
-        static void setHints(const WindowHints& hints);        
+        static void setHints(const WindowHints& hints);
 
         Window() noexcept:
-            _window(nullptr) {}
+            _window(nullptr),
+            _wrapped(false) {}
+
+        Window(GLFWwindow * window) noexcept:
+            _window(window),
+            _wrapped(true) {}
 
         Window(int width, int height, const std::string& title, const Monitor * pMonitor = nullptr, const Window * pShared = nullptr);
 
@@ -100,7 +107,7 @@ namespace glfw {
 
         KeyState getKey(int key) const noexcept;
 
-        void setCharCallback(GLFWcharfun cb) noexcept;
+        void setCharCallback(GLFWcharfun cb) noexcept;        
 
         void setCharModsCallback(GLFWcharmodsfun cb) noexcept;
 

@@ -39,6 +39,8 @@ namespace glfw {
     }
 
     inline Window::Window(int width, int height, const std::string& title, const Monitor * pMonitor, const Window * pShared) {
+        _wrapped = true;
+
         if (false == Context::getInstance().isInitialized()) {
             throw std::runtime_error("GLFW failed to initialize!");
         }
@@ -64,26 +66,32 @@ namespace glfw {
 
     inline Window::Window(Window&& other) noexcept {
         _window = other._window;
-        other._window = nullptr;
+        _wrapped = other._wrapped;
+        other._window = nullptr;    
     }
 
     inline Window::~Window() noexcept {
-        if (_window) {
+        if (_window && !_wrapped) {
             glfwDestroyWindow(_window);
         }
     }
 
     inline Window& Window::operator= (Window&& other) noexcept {
         auto tmp = _window;
+        auto tmpWrapped = _wrapped;
 
         _window = other._window;
+        _wrapped = other._wrapped;
+
         other._window = tmp;
+        other._wrapped = tmpWrapped;
 
         return *this;
     }
 
     inline Window& Window::operator= (GLFWwindow* pWindow) noexcept {
         _window = pWindow;
+        _wrapped = true;
 
         return *this;
     }
@@ -222,6 +230,26 @@ namespace glfw {
 
     inline KeyState Window::getKey(int key) const noexcept {
         return static_cast<KeyState> (glfwGetKey(_window, key));
+    }
+
+    inline void Window::setCharCallback(GLFWcharfun cb) noexcept {
+        glfwSetCharCallback(_window, cb);
+    }
+
+    inline void Window::setCharModsCallback(GLFWcharmodsfun cb) noexcept {
+        glfwSetCharModsCallback(_window, cb);
+    }
+
+    inline void Window::setClipboardString(const std::string& str) noexcept {
+        glfwSetClipboardString(_window, str.c_str());   
+    }
+
+    inline void Window::setCursorEnterCallback(GLFWcursorenterfun cb) noexcept {
+        glfwSetCursorEnterCallback(_window, cb);
+    }
+
+    inline void Window::setCursorPosition(double xpos, double ypos) noexcept {
+        glfwSetCursorPos(_window, xpos, ypos);
     }
 
     inline float Window::getOpacity() const noexcept {

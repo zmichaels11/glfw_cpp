@@ -23,6 +23,8 @@ model {
 
             binaries.all {
                 cppCompiler.args << '-std=c++14'
+                cppCompiler.args << '-g'
+                
                 linker.args << '-lGL'
                 linker.args << '-lglfw'                
             }
