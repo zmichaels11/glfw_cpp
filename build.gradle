@@ -1,0 +1,31 @@
+apply plugin: 'cpp'
+
+model {
+    repositories {
+        libs (PrebuiltLibraries) {
+            glfwpp {
+                headers.srcDirs "src/main/include"
+            }
+        }
+    }
+
+    components {
+        testInit (NativeExecutableSpec) {
+            sources {
+                cpp {
+                    lib library: 'glfwpp', linkage: 'api'
+
+                    source {
+                        srcDir 'src/testInit/cpp'
+                    }
+                }
+            }
+
+            binaries.all {
+                cppCompiler.args << '-std=c++14'
+                linker.args << '-lGL'
+                linker.args << '-lglfw'                
+            }
+        }
+    }
+}
