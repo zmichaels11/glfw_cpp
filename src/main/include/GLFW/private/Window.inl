@@ -259,4 +259,8 @@ namespace glfw {
     inline void Window::setOpacity(float opacity) noexcept {
         glfwSetWindowOpacity(_window, opacity);
     }
+
+    inline void Window::getCursorPosition(double& xpos, double& ypos) const noexcept {
+        glfwGetCursorPos(_window, &xpos, &ypos);
+    }
 }

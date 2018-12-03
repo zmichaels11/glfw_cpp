@@ -127,6 +127,8 @@ namespace glfw {
         void setMaximizedCallback(GLFWwindowmaximizefun cb) noexcept;
 
         void setOpacity(float opacity) noexcept;
+
+        void getCursorPosition(double& xpos, double& ypos) const noexcept;
     };
 }
 
