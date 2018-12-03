@@ -9,17 +9,17 @@ namespace glfw {
         glfwGetGamepadState(_id, &state);
 
         auto out = Gamepad::State {};
-        out.A = state.buttons[GLFW_GAMEPAD_BUTTON_A];
-        out.B = state.buttons[GLFW_GAMEPAD_BUTTON_B];
-        out.X = state.buttons[GLFW_GAMEPAD_BUTTON_X];
-        out.Y = state.buttons[GLFW_GAMEPAD_BUTTON_Y];
-        out.leftBumper = state.buttons[GLFW_GAMEPAD_LEFT_BUMPER];
-        out.rightBumper = state.buttons[GLFW_GAMEPAD_RIGHT_BUMPER];
-        out.back = state.buttons[GLFW_GAMEPAD_BUTTON_BACK];
-        out.start = state.buttons[GLFW_GAMEPAD_BUTTON_START];
-        out.guide = state.buttons[GLFW_GAMEPAD_BUTTON_GUIDE];
-        out.leftThumb = state.buttons[GLFW_GAMEPAD_BUTTON_LEFT_THUMB];
-        out.rightThumb = state.buttons[GLFW_GAMEPAD_BUTTON_RIGHT_THUMB];
+        out.A = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_A]);
+        out.B = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_B]);
+        out.X = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_X]);
+        out.Y = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_Y]);
+        out.leftBumper = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_LEFT_BUMPER]);
+        out.rightBumper = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER]);
+        out.back = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_BACK]);
+        out.start = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_START]);
+        out.guide = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_GUIDE]);
+        out.leftThumb = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_LEFT_THUMB]);
+        out.rightThumb = static_cast<ButtonState> (state.buttons[GLFW_GAMEPAD_BUTTON_RIGHT_THUMB]);
         out.dpad = Hat::CENTERED;
         
         if (state.buttons[GLFW_GAMEPAD_BUTTON_DPAD_UP]) {

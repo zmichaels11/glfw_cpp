@@ -1,1 +1,1 @@
-# C++ Wrapper for GLFW
+# Header-Only C++ Wrapper for GLFW

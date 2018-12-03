@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GLFW/Window.hpp"
+#include "GLFW/glfw3.hpp"
 
 static void errorcb(int error, const char* desc) {
     std::cerr << "Error: " 
