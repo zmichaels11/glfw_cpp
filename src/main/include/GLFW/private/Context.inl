@@ -59,8 +59,8 @@ namespace glfw {
         return glfwGetKeyScancode(key);
     }
 
-    inline GLFWglproc Context::getProcAddress(const std::string& procname) const noexcept {
-        return glfwGetProcAddress(procname.c_str());
+    inline GLFWglproc Context::getProcAddress(const char * procname) const noexcept {
+        return glfwGetProcAddress(procname);
     }
 
     inline void Context::postEmptyEvent() noexcept {
@@ -87,11 +87,35 @@ namespace glfw {
         glfwSwapInterval(interval);
     }
 
-    void Context::waitEvents() noexcept {
+    inline void Context::waitEvents() noexcept {
         glfwWaitEvents();
     }
 
-    void Context::waitEventsTimeout(double timeout) noexcept {
+    inline void Context::waitEventsTimeout(double timeout) noexcept {
         glfwWaitEventsTimeout(timeout);
     }
+
+    inline bool Context::vulkanSupported() const noexcept {
+        return glfwVulkanSupported();
+    }
+
+#if defined(VK_VERSION_1_0)
+    inline GLFWvkproc Context::getInstanceProcAddress(VkInstance instance, const char * procName) const noexcept; {
+        return glfwGetInstanceProcAddress(instance, procName);
+    }
+
+    inline std::vector<std::string> Context::getRequiredInstanceExtensions() const noexcept {
+        int count;
+        auto extensions = glfwGetRequiredInstanceExtensions(&count);
+        auto out = std::vector<std::string> ();
+
+        out.reserve(count);
+
+        for (int i = 0; i < count; i++) {
+            out.push_back(extensions[i]);
+        }
+
+        return out;
+    }
+#endif
 }

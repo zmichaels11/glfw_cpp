@@ -3,6 +3,9 @@
 #include <cstdint>
 
 #include <string>
+#include <vector>
+
+#include <GLFW/glfw3.h>
 
 namespace glfw {
     class Context {
@@ -34,7 +37,7 @@ namespace glfw {
 
         int getKeyScancode(int key) const noexcept;
 
-        GLFWglproc getProcAddress(const std::string& procname) const noexcept;
+        GLFWglproc getProcAddress(const char * procname) const noexcept;
 
         void postEmptyEvent() noexcept;
 
@@ -51,6 +54,15 @@ namespace glfw {
         void waitEvents() noexcept;
 
         void waitEventsTimeout(double timeout) noexcept;
+
+        bool vulkanSupported() const noexcept;
+
+#if defined(VK_VERSION_1_0)
+        GLFWvkproc getInstanceProcAddress(VkInstance instance, const char * procName) const noexcept;
+
+        std::vector<std::string> getRequiredInstanceExtensions() const noexcept
+#endif
+
     };
 }
 

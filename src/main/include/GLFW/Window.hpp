@@ -129,6 +129,10 @@ namespace glfw {
         void setOpacity(float opacity) noexcept;
 
         void getCursorPosition(double& xpos, double& ypos) const noexcept;
+
+#if defined(VK_VERSION_1_0)
+        VkSurfaceKHR createSurface(VkInstance instance, const VkAllocationCallbacks * allocator) const noexcept;
+#endif
     };
 }
 
