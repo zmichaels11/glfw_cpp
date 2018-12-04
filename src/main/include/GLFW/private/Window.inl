@@ -292,6 +292,10 @@ namespace glfw {
         glfwGetCursorPos(_window, &xpos, &ypos);
     }
 
+    inline ButtonState Window::getMouseButton(int mouseButton) const noexcept {
+        return static_cast<ButtonState> (glfwGetMouseButton(_window, mouseButton));
+    }
+
 #if defined(VK_VERSION_1_0)
     inline VkSurfaceKHR Window::createSurface(VkInstance instance, const VkAllocationCallbacks * allocator) const noexcept {
         VkSurfaceKHR out = VK_NULL_HANDLE;

@@ -6,6 +6,7 @@
 
 #include <GLFW/glfw3.h>
 
+#include "GLFW/ButtonState.hpp"
 #include "GLFW/KeyState.hpp"
 #include "GLFW/Monitor.hpp"
 #include "GLFW/WindowHints.hpp"
@@ -136,6 +137,8 @@ namespace glfw {
         void setOpacity(float opacity) noexcept;
 
         void getCursorPosition(double& xpos, double& ypos) const noexcept;
+
+        ButtonState getMouseButton(int buttonId) const noexcept;
 
 #if defined(VK_VERSION_1_0)
         VkSurfaceKHR createSurface(VkInstance instance, const VkAllocationCallbacks * allocator) const noexcept;
